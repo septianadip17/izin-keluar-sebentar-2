@@ -1,29 +1,27 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Status Meja</title>
 
   <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/style.css" />
 </head>
 
 <body class="flex items-center justify-center">
-
   <!-- CARD -->
   <main class="card">
-
     <!-- SELECT -->
     <section id="selectView">
       <h1 class="title">Pilih Status</h1>
       <div id="buttonGroup" class="flex flex-wrap justify-center gap-4"></div>
 
-      <input
-        id="customInput"
-        class="custom-input hidden"
-        placeholder="Tulis status custom lalu Enter..."
-      />
+      <div id="customWrapper" class="custom-wrapper hidden">
+        <input id="customInput" class="custom-input" placeholder="Tulis status custom..." />
+        <button id="customSubmit" class="custom-submit">➜</button>
+      </div>
     </section>
 
     <!-- STATUS -->
@@ -35,19 +33,17 @@
       <!-- MARQUEE -->
       <div class="marquee-wrapper">
         <span class="marquee-text">
-          Terima kasih 🙏 Jika urgent silakan hubungi WhatsApp
+          Terima kasih 🙏 Jika urgent silakan hubungi WhatsApp 089696135242
         </span>
       </div>
     </section>
-
   </main>
 
   <!-- RESET -->
-  <button id="resetBtn" class="floating-btn hidden">
-    🔄 Ganti Status
-  </button>
+  <button id="resetBtn" class="floating-btn hidden">🔄 Ganti Status</button>
 
   <script src="js/config.js"></script>
   <script src="js/app.js"></script>
 </body>
+
 </html>
