@@ -1,33 +1,59 @@
-/* =========================
-   GLOBAL / BACKGROUND
-========================= */
-body {
-  min-height: 100vh;
-  background: radial-gradient(circle at top left, #7dd3fc, transparent 45%),
+/* =========================================================
+   DESIGN TOKENS (THEME BASE)
+========================================================= */
+:root {
+  --font-main: system-ui, sans-serif;
+
+  --bg-gradient:
+    radial-gradient(circle at top left, #7dd3fc, transparent 45%),
     radial-gradient(circle at bottom right, #fde68a, transparent 45%),
     linear-gradient(135deg, #e0f2fe, #fdf4ff);
-  overflow: hidden;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+
+  --card-bg: rgba(255, 255, 255, 0.35);
+  --card-blur: blur(24px);
+  --card-radius: 2rem;
+
+  --text-main: #000;
+  --text-muted: rgba(0, 0, 0, 0.75);
+
+  --btn-bg: rgba(255, 255, 255, 0.55);
+  --btn-bg-hover: #fff;
+
+  --shadow-card: 0 40px 120px rgba(0, 0, 0, 0.25);
+  --shadow-btn:
+    0 12px 30px rgba(0, 0, 0, 0.25),
+    inset 0 0 0 1px rgba(0, 0, 0, 0.05);
 }
 
-/* =========================
-   CARD
-========================= */
+/* =========================================================
+   BASE
+========================================================= */
+body {
+  min-height: 100vh;
+  font-family: var(--font-main);
+  background: var(--bg-gradient);
+  overflow: hidden;
+  color: var(--text-main);
+}
+
+/* =========================================================
+   LAYOUT
+========================================================= */
 .card {
   width: min(92vw, 900px);
   min-height: 480px;
   padding: 4rem;
-  border-radius: 2rem;
-  background: rgba(255, 255, 255, 0.35);
-  -webkit-backdrop-filter: blur(24px);
-  backdrop-filter: blur(24px);
-  box-shadow: 0 40px 120px rgba(0, 0, 0, 0.25);
+  border-radius: var(--card-radius);
+  background: var(--card-bg);
+  backdrop-filter: var(--card-blur);
+  -webkit-backdrop-filter: var(--card-blur);
+  box-shadow: var(--shadow-card);
   text-align: center;
 }
 
-/* =========================
-   TITLES & TEXT
-========================= */
+/* =========================================================
+   TYPOGRAPHY
+========================================================= */
 .title {
   font-size: 3rem;
   font-weight: 900;
@@ -44,90 +70,57 @@ body {
   opacity: 0.75;
 }
 
-/* =========================
+/* =========================================================
    ICON
-========================= */
+========================================================= */
 .status-icon {
   font-size: 7rem;
   margin-bottom: 1rem;
 }
 
-/* =========================
-   STATUS BUTTON (INTERACTIVE)
-========================= */
+/* =========================================================
+   BUTTONS
+========================================================= */
 .status-btn {
   position: relative;
   padding: 0.85rem 2rem;
   border-radius: 9999px;
   font-weight: 700;
-  background: rgba(255, 255, 255, 0.55);
-  cursor: pointer;
-  transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
-}
-
-.status-btn::before {
-  content: "";
-  position: absolute;
-  inset: -6px;
-  border-radius: inherit;
-  background: radial-gradient(circle,
-      rgba(255, 255, 255, 0.5),
-      transparent 60%);
-  opacity: 0;
-  transition: opacity 0.25s;
+  background: var(--btn-bg);
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    background 0.25s ease;
 }
 
 .status-btn:hover {
   transform: translateY(-4px) scale(1.05);
-  background: white;
-  box-shadow: 0 14px 36px rgba(0, 0, 0, 0.25);
-}
-
-.status-btn:hover::before {
-  opacity: 1;
+  background: var(--btn-bg-hover);
+  box-shadow: var(--shadow-btn);
 }
 
 .status-btn:active {
   transform: scale(0.97);
 }
 
-/* =========================
-   CUSTOM INPUT + SUBMIT
-========================= */
+/* =========================================================
+   CUSTOM INPUT
+========================================================= */
 .custom-wrapper {
-  margin-top: 1.75rem;
-  display: flex;
-  gap: 0.75rem;
+  margin-top: 1.5rem;
 }
 
 .custom-input {
-  flex: 1;
-  padding: 0.85rem 1rem;
+  width: 100%;
+  padding: 0.75rem 1rem;
   border-radius: 0.75rem;
-  background: rgba(255, 255, 255, 0.75);
+  background: rgba(255, 255, 255, 0.6);
   outline: none;
-  font-size: 1rem;
 }
 
-.custom-submit {
-  padding: 0.85rem 1.25rem;
-  border-radius: 0.75rem;
-  font-size: 1.25rem;
-  font-weight: bold;
-  background: rgba(0, 0, 0, 0.75);
-  color: white;
-  cursor: pointer;
-  transition: transform 0.2s ease, background 0.2s;
-}
-
-.custom-submit:hover {
-  transform: scale(1.1);
-  background: rgba(0, 0, 0, 0.9);
-}
-
-/* =========================
+/* =========================================================
    MARQUEE
-========================= */
+========================================================= */
 .marquee-wrapper {
   margin-top: 3rem;
   padding-top: 1.5rem;
@@ -151,9 +144,9 @@ body {
   }
 }
 
-/* =========================
+/* =========================================================
    FLOATING BUTTON
-========================= */
+========================================================= */
 .floating-btn {
   position: fixed;
   bottom: 1.5rem;
@@ -162,19 +155,12 @@ body {
   border-radius: 9999px;
   font-weight: 600;
   background: rgba(0, 0, 0, 0.7);
-  color: white;
-  cursor: pointer;
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.35);
-  transition: transform 0.2s ease;
+  color: #fff;
 }
 
-.floating-btn:hover {
-  transform: translateY(-2px);
-}
-
-/* =========================
-   TV MODE
-========================= */
+/* =========================================================
+   MODES
+========================================================= */
 body.tv-mode {
   cursor: none;
 }

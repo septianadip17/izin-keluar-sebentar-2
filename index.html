@@ -6,43 +6,70 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Status Meja</title>
 
+  <!-- Tailwind -->
   <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- App Style -->
   <link rel="stylesheet" href="css/style.css" />
 </head>
 
-<body class="flex items-center justify-center">
-  <!-- CARD -->
+<body class="flex items-center justify-center min-h-screen">
+
+  <!-- =========================
+       MAIN CARD
+  ========================== -->
   <main class="card">
-    <!-- SELECT -->
-    <section id="selectView">
+
+    <!-- =========================
+         SELECT VIEW
+    ========================== -->
+    <section id="selectView" aria-label="Pilih status">
       <h1 class="title">Pilih Status</h1>
+
+      <!-- Dynamic buttons -->
       <div id="buttonGroup" class="flex flex-wrap justify-center gap-4"></div>
 
+      <!-- Custom input -->
       <div id="customWrapper" class="custom-wrapper hidden">
-        <input id="customInput" class="custom-input" placeholder="Tulis status custom..." />
-        <button id="customSubmit" class="custom-submit">➜</button>
+        <input id="customInput" type="text" class="custom-input" placeholder="Tulis status custom..."
+          autocomplete="off" />
+        <button id="customSubmit" type="button" class="custom-submit" aria-label="Submit custom status">
+          ➜
+        </button>
       </div>
     </section>
 
-    <!-- STATUS -->
-    <section id="statusView" class="hidden text-center">
+    <!-- =========================
+         STATUS VIEW
+    ========================== -->
+    <section id="statusView" class="hidden text-center" aria-live="polite">
       <div id="statusIcon" class="status-icon"></div>
+
       <h1 id="statusTitle" class="status-title"></h1>
       <p id="statusDesc" class="status-desc"></p>
 
-      <!-- MARQUEE -->
+      <!-- Marquee -->
       <div class="marquee-wrapper">
-        <span class="marquee-text">
-          Terima kasih 🙏 Jika urgent silakan hubungi WhatsApp 089696135242
-        </span>
+        <span class="marquee-text"></span>
       </div>
     </section>
+
   </main>
 
-  <!-- RESET -->
-  <button id="resetBtn" class="floating-btn hidden">🔄 Ganti Status</button>
+  <!-- =========================
+       FLOATING RESET BUTTON
+  ========================== -->
+  <button id="resetBtn" type="button" class="floating-btn hidden" aria-label="Ganti status">
+    🔄 Ganti Status
+  </button>
 
+  <!-- =========================
+       SCRIPTS
+  ========================== -->
+  <!-- config.js: STATUS_LIST -->
   <script src="js/config.js"></script>
+
+  <!-- app.js: logic -->
   <script src="js/app.js"></script>
 </body>
 

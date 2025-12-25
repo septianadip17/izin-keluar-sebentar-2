@@ -14,15 +14,25 @@ const customWrapper = document.getElementById("customWrapper");
 const customInput = document.getElementById("customInput");
 const customSubmit = document.getElementById("customSubmit");
 
+const marqueeText = document.querySelector(".marquee-text");
+
+/* =========================
+   CONFIG
+========================= */
+const WA_NUMBER = window.APP_CONFIG?.WA_NUMBER ?? "-";
+const { STATUS_LIST } = window.APP_CONFIG;
+
+
 /* =========================
    INIT
 ========================= */
+init();
+
 function init() {
   renderStatusButtons();
   bindEvents();
+  updateMarquee();
 }
-
-init();
 
 /* =========================
    RENDER
@@ -32,10 +42,10 @@ function renderStatusButtons() {
 
   STATUS_LIST.forEach((status) => {
     const btn = document.createElement("button");
-    btn.className = "status-btn";
     btn.type = "button";
+    btn.className = "status-btn";
     btn.textContent = `${status.icon} ${status.title}`;
-    btn.addEventListener("click", () => handleSelect(status));
+    btn.onclick = () => handleSelect(status);
 
     buttonGroup.appendChild(btn);
   });
@@ -45,30 +55,45 @@ function renderStatusButtons() {
    HANDLER
 ========================= */
 function handleSelect(status) {
+  hideCustomInput();
+
   if (status.id === "custom") {
     showCustomInput();
     return;
   }
 
-  showStatus(status.icon, status.title, status.desc);
+  showStatus({
+    icon: status.icon,
+    title: status.title,
+    desc: status.desc,
+  });
 }
 
 function showCustomInput() {
   customWrapper.classList.remove("hidden");
+  customInput.value = "";
   customInput.focus();
+}
+
+function hideCustomInput() {
+  customWrapper.classList.add("hidden");
 }
 
 function submitCustom() {
   const value = customInput.value.trim();
   if (!value) return;
 
-  showStatus("✍️", "IZIN", value);
+  showStatus({
+    icon: "✍️",
+    title: "IZIN",
+    desc: value,
+  });
 }
 
 /* =========================
    VIEW CONTROL
 ========================= */
-function showStatus(icon, title, desc) {
+function showStatus({ icon, title, desc }) {
   statusIcon.textContent = icon;
   statusTitle.textContent = title;
   statusDesc.textContent = desc;
@@ -78,7 +103,6 @@ function showStatus(icon, title, desc) {
   resetBtn.classList.remove("hidden");
 
   document.body.classList.add("tv-mode");
-
   requestFullscreen();
 }
 
@@ -87,7 +111,7 @@ function resetStatus() {
   selectView.classList.remove("hidden");
   resetBtn.classList.add("hidden");
 
-  customWrapper.classList.add("hidden");
+  hideCustomInput();
   customInput.value = "";
 
   document.body.classList.remove("tv-mode");
@@ -97,21 +121,18 @@ function resetStatus() {
    EVENTS
 ========================= */
 function bindEvents() {
-  resetBtn.addEventListener("click", resetStatus);
+  resetBtn.onclick = resetStatus;
+  customSubmit.onclick = submitCustom;
 
-  customSubmit.addEventListener("click", submitCustom);
+  customInput.onkeydown = (e) => {
+    if (e.key === "Enter") submitCustom();
+  };
 
-  customInput.addEventListener("keydown", (e) => {
-    if (e.key === "Enter") {
-      submitCustom();
-    }
-  });
-
-  document.addEventListener("keydown", (e) => {
+  document.onkeydown = (e) => {
     if (e.key === "Escape" || e.key.toLowerCase() === "r") {
       resetStatus();
     }
-  });
+  };
 }
 
 /* =========================
@@ -121,4 +142,8 @@ function requestFullscreen() {
   if (!document.fullscreenElement) {
     document.documentElement.requestFullscreen?.().catch(() => {});
   }
+}
+
+function updateMarquee() {
+  marqueeText.textContent = `Terima kasih 🙏 Jika urgent silakan hubungi WhatsApp ${WA_NUMBER}`;
 }
