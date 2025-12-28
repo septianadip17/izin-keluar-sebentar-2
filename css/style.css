@@ -45,8 +45,8 @@ body {
   padding: 4rem;
   border-radius: var(--card-radius);
   background: var(--card-bg);
-  backdrop-filter: var(--card-blur);
   -webkit-backdrop-filter: var(--card-blur);
+  backdrop-filter: var(--card-blur);
   box-shadow: var(--shadow-card);
   text-align: center;
 }

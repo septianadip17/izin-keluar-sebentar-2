@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <button id="btnSelect">Select</button>
+  <button id="btnStatus">Status</button>
+
+  <div id="viewSelect">PILIH</div>
+  <div id="viewStatus" hidden>STATUS</div>
+
+  <script>
+    const viewSelect = document.getElementById("viewSelect");
+    const viewStatus = document.getElementById("viewStatus");
+
+    function setView(view) {
+      viewSelect.hidden = view !== "select";
+      viewStatus.hidden = view !== "status";
+    }
+
+    document.getElementById("btnSelect").onclick = () => setView("select");
+    document.getElementById("btnStatus").onclick = () => setView("status");
+  </script>
+
+</body>
+
+</html>
