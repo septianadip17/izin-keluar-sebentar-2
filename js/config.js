@@ -11,14 +11,14 @@ window.APP_CONFIG = {
     {
       id: "sholat",
       icon: "🕌",
-      title: "SHOLAT",
+      title: "IZIN SHOLAT",
       desc: "Sedang melaksanakan ibadah",
     },
     {
       id: "makan",
       icon: "🍽️",
-      title: "MAKAN",
-      desc: "Sedang makan",
+      title: "IZIN MAKAN",
+      desc: "Sedang makan dulu",
     },
     {
       id: "wc",
