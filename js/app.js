@@ -44,7 +44,7 @@ function renderStatusButtons() {
     const btn = document.createElement("button");
     btn.type = "button";
     btn.className = "status-btn";
-    btn.textContent = `${status.icon} ${status.title}`;
+    btn.textContent = `${status.icon} ${status.id}`;
     btn.onclick = () => handleSelect(status);
 
     buttonGroup.appendChild(btn);
